@@ -6,9 +6,15 @@
 <body>
   <script type="text/javascript">
    // get the inputs
-
-   let playerSelection = "rock";
+   
+   let playerSelection;
    let computerSelection = computerPlay();
+   
+
+   // score kepper
+   let playerScore = 0;
+   let computerScore = 0;
+
    //computer input 
    function computerPlay() {
 		 let inputString = ["rock", "paper", "scissors"];
@@ -17,7 +23,43 @@
 
 		 return inputString[randIndex];
    }
-   console.log(playerSelection, computerSelection);
+
+
+   // playing a single round
+   function playRound(playerSelection, computerSelection) {
+
+   	    playerSelection = prompt("Select one from (rock, paper, scissors) and start playing.")
+   	    playerSelection = playerSelection.toLowerCase();
+   		
+   		console.log(playerSelection, computerSelection);
+   		
+   	    if ( playerSelection === "rock" && computerSelection === "scissors") {
+
+     		return "You won. Rock beats Scissors";
+
+    	}else if (playerSelection === "scissors" && computerSelection === "rock") {
+    		return "You lost. Rock beats Scissors";
+
+    	}else if (playerSelection === "paper" && computerSelection === "scissors") {
+      		return "You lost. Scissors beats Paper.";
+
+    	}else if (playerSelection === "scissors" && computerSelection === "paper") {
+      		return "You won. Scissors beats Paper.";
+
+    	}else if (playerSelection === "rock" && computerSelection === "paper") {
+      		return "You lost. Paper beats Rock.";
+
+    	}else if (playerSelection === "paper" && computerSelection === "rock") {
+      		return "You won. Paper beats Rock.";
+
+    	}else if (playerSelection === computerSelection){
+      		return "Its a tie. Play again.";
+    	}
+   }
+
+
+
+   console.log(playRound(playerSelection,computerSelection));
    
   </script>
 </body>
