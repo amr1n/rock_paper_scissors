@@ -5,7 +5,20 @@
 </head>
 <body>
   <script type="text/javascript">
+   // get the inputs
 
+   let playerSelection = "rock";
+   let computerSelection = computerPlay();
+   //computer input 
+   function computerPlay() {
+		 let inputString = ["rock", "paper", "scissors"];
+
+		 let randIndex = Math.floor(Math.random() * inputString.length);
+
+		 return inputString[randIndex];
+   }
+   console.log(playerSelection, computerSelection);
+   
   </script>
 </body>
 </html>
