@@ -1,31 +1,28 @@
-// get the inputs
-   
+
+// the inputs
 let playerSelection;
-let computerSelection = computerPlay();
+let computerSelection;
 
-
-// score kepper
+// score trakers
 let playerScore = 0;
 let computerScore = 0;
 
-//computer input 
+//  results and scores output
+let results = document.querySelector('.results');
+let scores = document.querySelector('.scores');
+
+//computer selection. 
 function computerPlay() {
-let inputString = ["rock", "paper", "scissors"];
+  let inputString = ["rock", "paper", "scissors"];
+  let randIndex = Math.floor(Math.random() * inputString.length);
 
-let randIndex = Math.floor(Math.random() * inputString.length);
-
-return inputString[randIndex];
+  return inputString[randIndex];
 }
 
 
 // playing a single round
 function playRound(playerSelection, computerSelection) {
-
-  playerSelection = prompt("Select one from (rock, paper, scissors) and start playing.")
-    playerSelection = playerSelection.toLowerCase();
-
-    console.log(playerSelection, computerSelection);
-
+  
   if ( playerSelection === "rock" && computerSelection === "scissors") {
 
     playerScore++;
@@ -56,31 +53,45 @@ function playRound(playerSelection, computerSelection) {
     playerScore++;
     console.log( "You won. Paper beats Rock.");
 
-  }else if (playerSelection === computerSelection){
+  }else{
     console.log( "Its a tie. Play again.");
   }
 }
 
 
 function game() {
-
-  playRound(playerSelection,computerSelection);
-  playRound(playerSelection,computerSelection);
-  playRound(playerSelection,computerSelection);
+  computerSelection = computerPlay();
+  console.log(playerSelection, computerSelection);
   playRound(playerSelection,computerSelection);
 
-  if (playerScore > computerScore) {
+  console.log(playerScore, computerScore)
+  if (playerScore === 5 &&  computerScore < 5) {
   console.log("You are the winner of this game. congrats.");
   console.log(playerScore, computerScore)
 
-  }else if(computerScore > playerScore){
-  console.log("Computer is the winner of this game.")
-  console.log(playerScore, computerScore)
-
-  }else{
-  console.log("This game was a Tie. Play again.");
+  }else if (playerScore < 5 && computerScore === 5){
+  console.log("You lose. computer is the winner.");
   console.log(playerScore , computerScore)
   }
 }
 
-game();
+
+// dom
+let buttons = document.querySelectorAll('button');
+for (i = 0; i < buttons.length; i++) {
+    let btn = buttons[i];
+    function callback() {
+      if (btn.className === "rock") {
+        playerSelection = "rock";
+      }else if (btn.className === "scissors"){
+        playerSelection = "scissors";
+      }else {
+        playerSelection = "paper";
+      }
+
+      game();
+    }
+
+    btn.addEventListener('click', callback);
+
+}
