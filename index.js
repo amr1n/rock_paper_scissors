@@ -11,6 +11,9 @@ let computerScore = 0;
 let results = document.querySelector('.resultsTxt');
 let scores = document.querySelector('.scores');
 
+let selections = document.querySelector('.selections');
+let body = document.querySelector('body');
+
 //computer selection. 
 function computerPlay() {
   let inputString = ["rock", "paper", "scissors"];
@@ -24,61 +27,79 @@ function computerPlay() {
 function playRound(playerSelection, computerSelection) {
   
   if ( playerSelection === "rock" && computerSelection === "scissors") { 
-    playerScore++;
-    results.textContent = "You won. Rock beats Scissors";
-
-  }else if (playerSelection === "scissors" && computerSelection === "rock") { 
-    computerScore++;
-    results.textContent = "You lost. Rock beats Scissors";
-
+    playerScore++; 
+  }else if (playerSelection === "scissors" && computerSelection === "rock") {  
+    computerScore++; 
+ 
   }else if (playerSelection === "paper" && computerSelection === "scissors") { 
-    computerScore++;
-    results.textContent = "You lost. Scissors beats Paper.";
-
+    computerScore++; 
+ 
   }else if (playerSelection === "scissors" && computerSelection === "paper") { 
-    playerScore++;
-    results.textContent = "You won. Scissors beats Paper.";
-
-  }else if (playerSelection === "rock" && computerSelection === "paper") { 
+    playerScore++; 
+ 
+  }else if (playerSelection === "rock" && computerSelection === "paper") {  
     computerScore++;
-    results.textContent = "You lost. Paper beats Rock.";
-
+ 
   }else if (playerSelection === "paper" && computerSelection === "rock") { 
     playerScore++;
-    results.textContent = "You won. Paper beats Rock.";
 
-  }else{
-    results.textContent = "Its a tie. Play again.";
-  }
+  } 
 }
 
 
 function game() {
   computerSelection = computerPlay(); 
   playRound(playerSelection,computerSelection);
-  scores.textContent = `${playerScore} ${computerScore}`; 
+  scores.textContent = ` Your: ${playerScore} | Computer: ${computerScore}`;
+
+  selections.textContent = ` You: ${playerSelection} | Computer: ${computerSelection}`
+
+  if (playerScore === 5) {
+    results.textContent = "You are the winner";
+  }else if (computerScore === 5) {
+    results.textContent = "Computer is the winner";
+  } 
+
+  gameRestart();
 }
 
 
-// dom
+// the dom
 let buttons = document.querySelectorAll('button');
-let playerSelectionBtn;
-for (i = 0; i < buttons.length; i++) {
-    playerSelectionBtn = buttons[i];
-    function callback() {
-      if (playerSelectionBtn.className === "rock") {
-        playerSelection = "rock";
-      }else if (playerSelectionBtn.className === "scissors"){
-        playerSelection = "scissors";
-      }else if (playerSelectionBtn.className === "paper"){
-        playerSelection = "paper";
-      }
 
+
+buttons.forEach((button) => {
+  function btnCallback() {
+      if (button.className === "rock") {
+        playerSelection = "rock";
+      }else if (button.className === "paper"){
+        playerSelection = "paper";
+      }else if (button.className === "scissors"){
+        playerSelection = "scissors";
+      }
+      
       game();
+  }
+  button.addEventListener('click', btnCallback);
+});
+
+
+function gameRestart() {
+
+  // remove all the existing buttons  
+  if ( playerScore === 5 || computerScore === 5) {
+    for (i = 0; i < buttons.length; i++) {
+      buttons[i].remove();
     }
 
-    playerSelectionBtn.addEventListener('click', callback);
+    let restartBtn = document.createElement('button');
+        restartBtn.textContent = "Play again";
+    restartBtn.addEventListener('click', function() {
+      location.reload();
+    });
+
+    body.appendChild(restartBtn);
+
+  }
 
 }
-
-
