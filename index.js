@@ -8,7 +8,7 @@ let playerScore = 0;
 let computerScore = 0;
 
 //  results and scores output
-let results = document.querySelector('.resultsTxt');
+let results = document.querySelector('.title');
 let scores = document.querySelector('.scores');
 
 let selections = document.querySelector('.selections');
@@ -23,7 +23,7 @@ function computerPlay() {
 }
 
 
-// playing a single round
+// playing a single round and adding score
 function playRound(playerSelection, computerSelection) {
   
   if ( playerSelection === "rock" && computerSelection === "scissors") { 
@@ -47,10 +47,11 @@ function playRound(playerSelection, computerSelection) {
 }
 
 
-function game() {
+function gameStart() {
   computerSelection = computerPlay(); 
+  
   playRound(playerSelection,computerSelection);
-  scores.textContent = ` Your: ${playerScore} | Computer: ${computerScore}`;
+  scores.textContent = ` You: ${playerScore} | Computer: ${computerScore}`;
 
   selections.textContent = ` You: ${playerSelection} | Computer: ${computerSelection}`
 
@@ -64,41 +65,43 @@ function game() {
 }
 
 
-// the dom
-let buttons = document.querySelectorAll('button');
-
-
-buttons.forEach((button) => {
+// get the user input from objects
+let objects = document.querySelectorAll('.object');
+objects.forEach((object) => {
   function btnCallback() {
-      if (button.className === "rock") {
+      if (object.id === "rock") {
         playerSelection = "rock";
-      }else if (button.className === "paper"){
+      }else if (object.id === "paper"){
         playerSelection = "paper";
-      }else if (button.className === "scissors"){
+      }else if (object.id === "scissors"){
         playerSelection = "scissors";
       }
-      
-      game();
+      console.log(object.id);
+      gameStart();
   }
-  button.addEventListener('click', btnCallback);
+  object.addEventListener('click', btnCallback);
 });
 
 
 function gameRestart() {
 
-  // remove all the existing buttons  
+  // remove all the existing objects and add PlayAgain btn.
   if ( playerScore === 5 || computerScore === 5) {
-    for (i = 0; i < buttons.length; i++) {
-      buttons[i].remove();
+    for (i = 0; i < objects.length; i++) {
+      objects[i].remove();
     }
-
-    let restartBtn = document.createElement('button');
+    selections.remove();
+    let restartBtnContainer = document.createElement('div')
+      restartBtnContainer.className = "play_again_cont";
+    let restartBtn = document.createElement('div');
         restartBtn.textContent = "Play again";
+        restartBtn.className = "play_again";
     restartBtn.addEventListener('click', function() {
       location.reload();
     });
 
-    body.appendChild(restartBtn);
+    body.appendChild(restartBtnContainer);
+    restartBtnContainer.appendChild(restartBtn);
 
   }
 

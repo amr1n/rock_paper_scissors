@@ -2,15 +2,24 @@
 <html>
 <head>
 	<title>Rock Paper Scissors</title>
+	<link rel="stylesheet" type="text/css" href="css/all.min.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
-  <button class="rock">Rock</button> 
-  <button class="paper">Paper</button>
-  <button class="scissors">Scissors</button>
+  <h1 class="title">Play Rock Paper Scissors With The Computer</h1>
+  
+  <div class="container">
+	<div class="object" id="rock"><i class="fas fa-hand-rock"></i></div>
 
-  <div class="selections"></div>
-  <div class="resultsTxt"></div>
-  <div class="scores"></div>
+  	<div class="object" id="paper"><i class="fas fa-hand-paper"></i></div>
+
+  	<div class="object" id="scissors"><i class="fas fa-hand-scissors"></i></div>
+  </div>
+
+  <div class="info_container">
+	  <div class="selections info">Select One Object To Start Playing...</div>
+	  <div class="scores info">YOU: 0 | COMPUTER: 0</div>
+  </div>
 
   <script type="text/javascript" src="index.js"></script>
 </body>

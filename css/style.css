@@ -1,0 +1,59 @@
+body {
+	background: black;
+	color: white;
+}
+
+.title {
+	font-size: 40px;
+	padding-bottom: 20px;
+	text-align: center;
+}
+
+.info_container {
+	padding: 10px;
+}
+
+.info {
+	font-size: 30px;
+	margin: 0 10px 20px 0;
+	text-align: center;
+
+}
+
+.container {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+.object {
+	width: 200px;
+	height: 200px; 
+	margin: 25px 25px 25px 50px;
+	cursor: pointer;
+}
+
+.fas {
+	font-size: 200px;
+	color: white;
+}
+
+.play_again_cont {
+	display: flex;
+	justify-content: center;
+}
+
+.play_again {
+	width: 100px;
+	text-align: center;
+	border: 4px solid white;
+	border-radius: 15px;
+	padding: 20px 25px;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.play_again:hover {
+	border-color: skyblue;
+	color: skyblue;
+	cursor: pointer;
+}
