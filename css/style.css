@@ -58,7 +58,7 @@ body {
 }
 
 .play_again:hover {
-	border-color: skyblue;
-	color: skyblue;
+	border-color: #fad586;
+	color: #fad586;
 	cursor: pointer;
 }
