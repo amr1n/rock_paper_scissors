@@ -32,6 +32,10 @@ body {
 	cursor: pointer;
 }
 
+.fas:hover {
+	color: skyblue;
+}
+
 .fas {
 	font-size: 200px;
 	color: white;
