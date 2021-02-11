@@ -1,6 +1,6 @@
 body {
-	background: black;
-	color: white;
+	background: #184d47;
+	color: #d6efc7;
 	font-family: 'Inconsolata', monospace;
 }
 
@@ -34,12 +34,12 @@ body {
 }
 
 .fas:hover {
-	color: skyblue;
+	color: #fad586;
 }
 
 .fas {
 	font-size: 200px;
-	color: white;
+	color: #d6efc7;
 }
 
 .play_again_cont {
